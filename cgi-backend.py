@@ -142,6 +142,58 @@ while True:
 			continue
 		else:
 			print("ERROR: command not found")
+	elif x=="hadoop":
+		print("""
+        	01. Checks the hadoop version
+        	02. Format a hadoop namenode
+        	03. Start the namenode service
+        	04. Start the datanode service
+        	05. Show the hadoop report in namenode
+        	06. List all files present in hadoop filesystem
+        	07. Upload the file to hadoop filesystem
+        	08. Remove the file from hadoop filesystem
+        	09. List the contents of a file in hdfs
+        	10. Upload the file with a defined block size
+        	11. Create an empty file in hadoop filesystem
+        	00. Go to previous menu
+        	""")
+		y = input()
+		
+		if y=="1":
+			os.system("hadoop version")
+		elif y=="2":
+			os.system("hadoop namenode -format")
+		elif y=="3":
+			os.system("hadoop-daemon.sh start namenode")
+		elif y=="4":
+			os.system("hadoop-daemon.sh start datanode")
+		elif y=="5":
+			os.system("hadoop dfsadmin -report")
+		elif y=="6":
+			os.system("hadoop fs -ls /")
+		elif y=="7":
+			z = input()
+			a = input()
+			os.system("hadoop fs -put {} /{} ".format(z,a))
+		elif y=="8":
+			z = input()
+			os.system("hadoop fs -rm /{}".format(z))
+		elif y=="9":
+			z = input()
+			os.system("hadoop fs -cat /{}".format(z))
+		elif y=="10":
+			z = input()
+			a = input()
+			os.system("hadoop fs -Ddfs.block.size={} -put {} /".format(z))
+		elif y=="11":
+			z = input()
+			os.system("hadoop fs -touchz  {} /".format(z))
+		elif y=="12":
+			continue
+		else:
+			print("ERROR: command not found")
+			
+			
 			
 		
 			
