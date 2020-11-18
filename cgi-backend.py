@@ -85,6 +85,64 @@ while True:
 			continue
 		else:
             		print("ERROR: Command not found")
+	# AWS start
+	
+	# AWS end
+	
+	# Hadoop start
+	
+	# Hadoop end
+	
+	elif x=="docker":
+		print("""
+        	01. Checks the docker version
+        	02. Launching a container
+        	03. Pull image from dockerhub
+        	04. List running docker containers
+        	05. List all docker containers
+        	06. List all images present in system
+        	07. Starting a docker container
+        	08. Stopping a docker container
+        	09. Deleting a docker container
+        	10. Stop all docker containers
+        	11. Delete all docker containers
+        	00. Go to previous menu
+        	""")
+		
+		y = input()
+		if y=="1":
+			os.system("docker --version")
+		elif y=="2":
+			z = input()  #container name
+			a = input()  #image
+			os.system("docker run -it --name {} {}".format(z,a))
+		elif y=="3":
+			z = input() #image name
+			os.system("docker pull {}".format(z))
+		elif y=="4":
+			os.system("docker ps")
+		elif y=="5":
+			os.system("docker ps -a")
+		elif y=="6":
+			os.system("docker images")
+		elif y=="7":
+			z = input() #container name/id
+			os.system("docker start {}".format(z))
+		elif y=="8":
+			z = input() #container name/id
+			os.system("docker stop {}".format(z))
+		elif y=="9":
+			z = input() #container name/id
+			os.system("docker rm {}".format(z))
+		elif y=="10":
+			os.system("docker container rm $(docker container ls –aq")
+		elif y=="11":
+			os.system("docker container stop $(docker container ls –aq) && docker system prune –af ––volumes")
+		elif y=="12":
+			continue
+		else:
+			print("ERROR: command not found")
+			
 		
 			
 		
