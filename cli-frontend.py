@@ -26,6 +26,9 @@ while True:
                 print("done...")
         record = r.recognize_google(audio)
         
+	
+	
+	# linux frontend
         if ('linux' in record) or ('Linux' in record):
                 wb.open('ip:80/cgi-bin/backend.py?x=linux')
                 print("Menu opened in browser...")
@@ -143,7 +146,9 @@ while True:
 			wb.open('ip:80/cgi-bin/backend.py?x=linux&y=20')
 		else:
 			print("ERROR: invalid search")
-	if ("docker" in record):
+			
+	# docker frontend
+	elif ("docker" in record):
 		wb.open("ip:80/cgi-bin/backend.py?x=docker")
 		print("Options opened in browser")
 		print("What next?")
@@ -214,3 +219,83 @@ while True:
 			wb.open('ip:80/cgi-bin/backend.py?x=docker&y=12')
 		else:
 			print("ERROR: Couldn't understand the command")
+			
+	# hadoop fronend
+	elif ("hadoop" in record):
+		wb.open("ip:80/cgi-bin/backend.py?x=hadoop")
+		print("Options shown in browser")
+		print("What next?")
+		with r.Microphone() as source:
+                	print("listening....")
+                        audio = r.listen(source)
+                       	print("done..")
+		ch = r.recognize_google(audio)
+		if ("show" in ch) and ("hadoop" in ch) and ("version" in ch):
+			wb.open("ip:80/cgi-bin/backend.py?x=hadoop&y=1")
+		elif ("namenode" in ch) and ("format" in ch):
+			wb.open("ip:80/cgi-bin/backend.py?x=hadoop&y=2")
+		elif ("start" in ch) and ("namenode" in ch):
+			wb.open("ip:80/cgi-bin/backend.py?x=hadoop&y=3")
+		elif ("start" in ch) and ("datanode" in ch):
+			wb.open("ip:80/cgi-bin/backend.py?x=hadoop&y=4")
+		elif ("hadoop" or "namenode" in ch) and ("report" in ch):
+			wb.open("ip:80/cgi-bin/backend.py?x=hadoop&y=5")
+		elif ("list" in ch) and ("cluster" or "filesystem" in ch):
+			wb.open("ip:80/cgi-bin/backend.py?x=hadoop&y=6")
+		elif ("upload" or "put" in ch) and ("files" or "file" in ch):
+			print("File name?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			print("File destination in cluster?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio1 = r.listen(source)
+                       		print("done..")
+			a = r.recognize_google(audio1)
+			wb.open("ip:80/cgi-bin/backend.py?x=hadoop&y=7&z={}&a={}".format(z,a))
+		elif ("remove" or "delete" in ch) and ("hadoop" or "cluster" or "file system" in ch):
+			print("File name?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			wb.open("ip:80/cgi-bin/backend.py?x=hadoop&y=8&z={}".format(z))
+		elif ("read" or "show" in ch) and ("file" in ch):
+			print("File name?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			wb.open("ip:80/cgi-bin/backend.py?x=hadoop&y=9&z={}".format(z))
+		elif ("block size" in ch) and ("upload" or "load" in ch) and ("file system" or "cluster" in ch):
+			print("Block size?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			print("File name?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio1 = r.listen(source)
+                       		print("done..")
+			a = r.recognize_google(audio1)
+			wb.open("ip:80/cgi-bin/backend.py?x=hadoop&y=10&z={}&a={}".format(z,a))
+		elif ("create" or "make" in ch) and ("empty" in ch) ("file" in ch):
+			print("File name?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			wb.open("ip:80/cgi-bin/backend.py?x=hadoop&y=11&z={}".format(z))
+		elif ("go back" or "show previous" in ch):
+			wb.open("ip:80/cgi-bin/backend.py?x=hadoop&y=12")
+		else:
+			print("ERROR: Couldn't find anything")
+			
