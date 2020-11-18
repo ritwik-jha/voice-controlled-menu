@@ -24,9 +24,9 @@ while True:
                 print("We are listening to you.......")
                 audio = r.listen(source)
                 print("done...")
-        ch = r.recognize_google(audio)
+        record = r.recognize_google(audio)
         
-        if ('linux' in ch) or ('Linux' in ch):
+        if ('linux' in record) or ('Linux' in record):
                 wb.open('ip:80/cgi-bin/backend.py?x=linux')
                 print("Menu opened in browser...")
                 print("What next?")
@@ -34,8 +34,8 @@ while True:
                         print("listening....")
                         audio = r.listen(source)
                         print("done..")
-                y = r.recognize_google(audio)
-                if ('directory' in y):
+                ch = r.recognize_google(audio)
+                if ('directory' in ch):
                         print("Name of directory")
                         with r.Microphone() as source:
                                 print("listening....")
@@ -143,4 +143,74 @@ while True:
 			wb.open('ip:80/cgi-bin/backend.py?x=linux&y=20')
 		else:
 			print("ERROR: invalid search")
-  
+	if ("docker" in record):
+		wb.open("ip:80/cgi-bin/backend.py?x=docker")
+		print("Options opened in browser")
+		print("What next?")
+		with r.Microphone() as source:
+                	print("listening....")
+                        audio = r.listen(source)
+                        print("done..")
+                ch = r.recognize_google(audio)
+		if ('docker version' or 'version' in ch):
+			wb.open('ip:80/cgi-bin/backend.py?x=docker&y=1')
+		elif ('container' in ch) and ('launch' in ch):
+			print('Give the name of the container')
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			print('Give the name of the image to  be used')
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			a = r.recognize_google(audio)
+			wb.open('ip:80/cgi-bin/backend.py?x=docker&y=2&z={}&a={}'.format(z,a))
+		elif ('image' in ch) and ('pull' in ch):
+			print('Give the name of the image')
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			wb.open('ip:80/cgi-bin/backend.py?x=docker&y=3&z={}'.format(z))
+		elif ('list' in ch) and ('running' in ch) and ('containers' in ch):
+			wb.open('ip:80/cgi-bin/backend.py?x=docker&y=4')
+		elif ('list' and 'all' in ch) and ('containers' in ch):
+			wb.open('ip:80/cgi-bin/backend.py?x=docker&y=5')
+		elif ('list' in ch) and ('images' in ch):
+			wb.open('ip:80/cgi-bin/backend.py?x=docker&y=6')
+		elif ('container' in ch) and ('start' in ch):
+			print('Give the name/id of the container')
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			wb.open('ip:80/cgi-bin/backend.py?x=docker&y=7&z={}'.format(z))
+		elif ('container' in ch) and ('stop' in ch):
+			print('Give the name/id of the container')
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			wb.open('ip:80/cgi-bin/backend.py?x=docker&y=8&z={}'.format(z))
+		elif ('container' in ch) and ('delete' in ch):
+			print('Give the name/id of the container')
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			wb.open('ip:80/cgi-bin/backend.py?x=docker&y=9&z={}'.format(z))
+		elif ('container' in ch) and ('stop' in ch) and ('all' in ch): 
+			wb.open('ip:80/cgi-bin/backend.py?x=docker&y=11')
+		elif ('container' in ch) and ('delete' in ch) and ('all' in ch): 
+			wb.open('ip:80/cgi-bin/backend.py?x=docker&y=10')
+		elif ('go' or 'show' in ch) and ('back' or 'previous' in ch): 
+			wb.open('ip:80/cgi-bin/backend.py?x=docker&y=12')
+		else:
+			print("ERROR: Couldn't understand the command")
