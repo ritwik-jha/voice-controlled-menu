@@ -128,12 +128,12 @@ while True:
            		os.system("aws ec2 attach-volume --instance-id {} --volume-id {} --device xvdh".format(z,a))
         	elif choice == "7":
             		z = input()
-            		a = input("Enter the region: ")
+            		a = input()
             		os.system = input("aws s3api create-bucket --bucket {} --region {} --create-bucket-configuration LocationConstraint={}".format(z,a,a))
         	elif choice == "8":
-            		z = input("Enter the name of the bucket: ")
-            		b = input("Enter the path of the object with name: ")
-            		a = input("Enter the name which you want to give to the object when i will save in the bucket: ")
+            		z = input()
+            		b = input()
+            		a = input()
             		os.system = input("aws s3api put-object --bucket {} --key {} --body \"{}\"".format(z,a,b))
         	elif choice == "0":
             		continue
