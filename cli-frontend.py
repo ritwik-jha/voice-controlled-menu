@@ -46,9 +46,9 @@ while True:
                                 print("done..")
                         z = r.recognize_google(audio)
                         wb.open('ip:80/cgi-bin/backend.py?x=linux&y=1&z={}'.format(z))
-                 elif ('list' in ch) or ('show all' in ch):
+                elif ('list' in ch) or ('show all' in ch):
                         wb.open('ip:80/cgi-bin/backend.py?x=linux&y=2')
-                 elif ('create' or 'make' in ch) and ('empty' or 'blank' in ch) and ('file' in ch):
+                elif ('create' or 'make' in ch) and ('empty' or 'blank' in ch) and ('file' in ch):
 			print("Give the name of file")
                         with r.Microphone() as source:
                                 print("listening....")
@@ -385,4 +385,53 @@ while True:
                        		print("done..")
 			a = r.recognize_google(audio)
 			wb.open("ip:80/cgi-bin/backend.py?x=aws&y=5&z={}&a={}".format(z,a))
-		elif 
+		elif ("attach" or "connect" in ch) and ("volume" or "storage" in ch):
+			print("instance id?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			print("volume id?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			a = r.recognize_google(audio)
+			wb.open("ip:80/cgi-bin/backend.py?x=aws&y=6&z={}&a={}".format(z,a))
+		elif ("create" or "make" in ch) and ("bucket" in ch):
+			print("bucket name?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			print("region?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			a = r.recognize_google(audio)
+			wb.open("ip:80/cgi-bin/backend.py?x=aws&y=7&z={}&a={}".format(z,a))
+		elif ("put" or "store" in ch) and ("bucket" in ch):
+			print("bucket name?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			print("body?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			a = r.recognize_google(audio)
+			print("key?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			b = r.recognize_google(audio)
+			wb.open("ip:80/cgi-bin/backend.py?x=aws&y=8&z={}&a={}&b={}".format(z,a,b))
+		elif ("go back" or "previous menu" in ch):
+			wb.open("ip:80/cgi-bin/backend.py?x=aws&y=0")
