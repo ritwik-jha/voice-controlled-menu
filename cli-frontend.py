@@ -298,4 +298,91 @@ while True:
 			wb.open("ip:80/cgi-bin/backend.py?x=hadoop&y=12")
 		else:
 			print("ERROR: Couldn't find anything")
-			
+	
+	#AWS frontend
+	elif ("aws" or "AWS" or "A W S" in record):
+		wb.open("ip:80/cgi-bin/backend.py?x=hadoop")
+		print("Options shown in browser")
+		print("What next?")
+		with r.Microphone() as source:
+                	print("listening....")
+                        audio = r.listen(source)
+                       	print("done..")
+		ch = r.recognize_google(audio)
+		if ("configure" in ch) and ("aws" in ch):
+			wb.open("ip:80/cgi-bin/backend.py?x=aws&y=1")
+		elif ("create" or "make" in ch) and ("key" in ch) and ("pair" in ch):
+			print("key name ?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			wb.open("ip:80/cgi-bin/backend.py?x=aws&y=2&z={}".format(z))
+		elif ("create" or "make" in ch) and ("security" in ch) and ("group" in ch):
+			print("security group name?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			print("description?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio1 = r.listen(source)
+                       		print("done..")
+			a = r.recognize_google(audio1)
+			wb.open("ip:80/cgi-bin/backend.py?x=aws&y=3&z={}&a={}".format(z,a))
+		elif ("launch" or "open" in ch) and ("instance" or "os" in ch):
+			print("image id?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			print("instance type?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			a = r.recognize_google(audio)
+			print("count?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			b = r.recognize_google(audio)
+			print("subnet id?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			c = r.recognize_google(audio)
+			print("key name?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			d = r.recognize_google(audio)
+			print("security group id")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			e = r.recognize_google(audio)
+			wb.open("ip:80/cgi-bin/backend.py?x=aws&y=4&z={}&a={}&b={}&c={}&d={}&e={}".format(z,a,b,c,d,e))
+		elif ("create" or "make" in ch) and ("ebs" or "EBS" in ch) and ("storage" or "volume" in ch):
+			print("availability zone?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			z = r.recognize_google(audio)
+			print("size/volume?")
+			with r.Microphone() as source:
+                		print("listening....")
+                        	audio = r.listen(source)
+                       		print("done..")
+			a = r.recognize_google(audio)
+			wb.open("ip:80/cgi-bin/backend.py?x=aws&y=5&z={}&a={}".format(z,a))
+		elif 
