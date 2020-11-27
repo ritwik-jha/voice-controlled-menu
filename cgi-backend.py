@@ -87,11 +87,61 @@ while True:
             		print("ERROR: Command not found")
 	# AWS start
 	
+	elif x=="aws":
+		print("""
+		01. Configure AWS
+        	02. Create a Key-Pair
+        	03. Create a Security Group
+        	04. Launching an instance
+        	05. Creating EBS
+        	06. Attaching EBS
+        	07. Creating S3 Bucket
+        	08. Storing file in S3 Bucket
+        	00. Go to previous menu
+		""")
+		
+		y = input()
+		if choice == "1":
+            		os.system("aws configure")
+        	elif choice == "2":
+            		z = input()
+            		os.system("aws ec2 create-key-pair --key-name {}".format(z))
+        	elif choice == "3":
+            		z = input()
+            		a = input()
+            		os.system('aws ec2 create-security-group --group-name {} --description {}'.format(z,a))
+        	elif choice == "4":
+            		z = input()
+            		a = input()
+            		b = input()
+            		c = input()
+            		d = input()
+            		e = input()
+            		os.system("aws ec2 run-instances --image-id {} --instance-type {} --count {} --subnet-id {} --key-name {} --security-group-ids {}".format(z,a,b,c,d,e))
+        	elif choice == "5":
+            		z = input()
+            		a = input()
+            		os.system("aws ec2 create-volume --availability-zone {} --no-encrypted --size {}".format(z,a))
+        	elif choice == "6":
+            		z = input()
+           		a = input()
+           		os.system("aws ec2 attach-volume --instance-id {} --volume-id {} --device xvdh".format(z,a))
+        	elif choice == "7":
+            		z = input()
+            		a = input("Enter the region: ")
+            		os.system = input("aws s3api create-bucket --bucket {} --region {} --create-bucket-configuration LocationConstraint={}".format(z,a,a))
+        	elif choice == "8":
+            		z = input("Enter the name of the bucket: ")
+            		b = input("Enter the path of the object with name: ")
+            		a = input("Enter the name which you want to give to the object when i will save in the bucket: ")
+            		os.system = input("aws s3api put-object --bucket {} --key {} --body \"{}\"".format(z,a,b))
+        	elif choice == "0":
+            		continue
+        	else:
+            		print("ERROR: Command not found")
+
+	
 	# AWS end
-	
-	# Hadoop start
-	
-	# Hadoop end
 	
 	elif x=="docker":
 		print("""
