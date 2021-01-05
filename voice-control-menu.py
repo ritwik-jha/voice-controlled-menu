@@ -53,7 +53,7 @@ while True:
         	00. Go to previous menu
 		""")
                 print("What next?")
-                with r.Microphone() as source:
+		with r.Microphone() as source:
                         print("listening....")
                         audio = r.listen(source)
                         print("done..")
@@ -61,7 +61,7 @@ while True:
 		print(ch)
                 if ('directory' in ch):
                         print("Name of directory")
-                        with r.Microphone() as source:
+			with r.Microphone() as source:
                                 print("listening....")
                                 audio = r.listen(source)
                                 print("done..")
