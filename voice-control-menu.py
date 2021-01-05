@@ -26,7 +26,7 @@ while True:
                 print("done...")
         record = r.recognize_google(audio)
         
-	
+	print(record)
 	
 	# linux frontend
         if ('linux' in record) or ('Linux' in record):
@@ -58,6 +58,7 @@ while True:
                         audio = r.listen(source)
                         print("done..")
                 ch = r.recognize_google(audio)
+		print(ch)
                 if ('directory' in ch):
                         print("Name of directory")
                         with r.Microphone() as source:
@@ -212,6 +213,7 @@ while True:
                         audio = r.listen(source)
                         print("done..")
                 ch = r.recognize_google(audio)
+		print(ch)
 		if ('docker version' or 'version' in ch):
 			#wb.open('ip:80/cgi-bin/backend.py?x=docker&y=1')
 			os.system("docker --version")
@@ -309,6 +311,7 @@ while True:
                         audio = r.listen(source)
                        	print("done..")
 		ch = r.recognize_google(audio)
+		print(ch)
 		if ("show" in ch) and ("hadoop" in ch) and ("version" in ch):
 			#wb.open("ip:80/cgi-bin/backend.py?x=hadoop&y=1")
 			os.system("hadoop version")
@@ -409,6 +412,7 @@ while True:
                         audio = r.listen(source)
                        	print("done..")
 		ch = r.recognize_google(audio)
+		print(ch)
 		if ("configure" in ch) and ("aws" in ch):
 			#wb.open("ip:80/cgi-bin/backend.py?x=aws&y=1")
 			os.system("aws configure")
