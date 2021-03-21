@@ -1,4 +1,4 @@
-# VOICE OPERATED MENU (task 9.1)
+# VOICE OPERATED MENU (Project 9.1)
 
 In this task we have created a python menu program which is operated using voice. The user speaks what he/she wants to achieve from the given options and the program will switch  
 on the mic.
